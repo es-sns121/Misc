@@ -1,0 +1,25 @@
+#!/bin/bash
+#!-*-sh-*-
+
+num=1
+termPath="`pwd`"
+
+function createTerm {
+	gnome-terminal
+}
+
+if [ "$1" != "" ]; then
+	num=$1
+fi
+
+if [ "$2" != "" ]; then
+	termPath="$2"
+fi
+
+printf "Creating $num terminal instances at $termPath\n"
+
+cd $termPath
+for i in `seq 1 $num`; 
+do
+	createTerm
+done

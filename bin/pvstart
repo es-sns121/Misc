@@ -1,0 +1,31 @@
+#!/bin/bash
+#!-*-sh-*-
+
+# Program locations
+database_dir=$EPICS_V4_DIR/exampleCPP/database/bin/linux-x86_64/exampleDatabaseMain
+# Command list
+command_list=""
+command_list+="\tdatabase\n"
+
+function print_usage {
+	printf "\tusage: pvstart [flag] [command]\n"
+	printf "\t[flag] '-l' to list commands\n"
+	exit
+}
+
+if [ "$1" = "" ]; then
+	# print usage
+	print_usage
+fi
+
+if [ "$1" = "-l" ]; then
+	printf "known commands:\n$command_list"
+	exit
+fi
+
+if [ "$1" = "database" ]; then
+	$database_dir
+else
+	printf "Command '$1' not recognized\n"
+	print_usage
+fi
